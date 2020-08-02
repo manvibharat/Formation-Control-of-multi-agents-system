@@ -1,43 +1,28 @@
-function f(du,u,p,t)
-    n=p.n
-    kv=p.kv
-    Adj = p.Adj
-    d = p.d
-    q = reshape(u,(3,:))
+using Plots; pyplot();
+n=5
 
-    z = zeros(2*n-3,1)
-    R = zeros(2*n-3,2*n)
-    e = zeros(n,n)
-    
-    ord = 1
-    for i=1:n-1
-        for j=i+1:n
-            e(i,j) = sqrt((q(:,i)-q(:,j))'*(q(:,i)-q(:,j)))-d(i,j)
-            if Adj(i,j) == 1
-                z[ord] = e(i,j)*(e(i,j)+2*d(i,j));
-                R[ord,(3*i-2):(3*i)] = (q(:,i)-q(:,j))';
-                R[ord,(3*j-2):(3*j)] = (q(:,j)-q(:,i))';
-                ord = ord+1;
-            end
-        end
-    end
+d = zeros(n,n); 
+c1 = cos(2*pi/5);
+c2 = cos(pi/5);
+s1 = sin(2*pi/5);
+s2 = sin(4*pi/5);
+x_coor = [-s1; -s2; s2; s1; 0; 0];  
+y_coor = [c1; -c2; -c2; c1; 0; 1];  
+z_coor = [0.0; 0.0; 0.0; 0.0; 0.0; 0.0];
 
-    control = -kv * R' * z;
-    du = control 
-end
+freq = 138*10^6;
+c = 3.8*10^8;
+lambda = c/freq;
+inter_agent_d = lambda / 2;
 
-u0=[0.0 0.0
-    0.0 0.0]
+k=collect(0:n-1);
+# R=4*lambda/10;
 
+x=[cos.(2*k*pi/n);0];
+y=[sin.(2*k*pi/n);0];
+z=zeros(n+1,1)
 
-x_coor = transpose([0 -s1 -s2 s2 s1 0]);  # x coordinate of framework F*
-y_coor = transpose([1 c1 -c2 -c2 c1 0]);  # y coordinate of framework F* 
-
-z_coor = transpose([0.0 0.0 0.0 0.0 0.0 0.0]);
-
-for ii = 1:n
-    for jj = 1:n
-        d[ii,jj] = sqrt((x_coor[ii]-x_coor[jj])^2+(y_coor[ii]-y_coor[jj])^2+(z_coor[i]-z_coor[jj])^2)
-    end
-end
-
+# scatter(x_coor,y_coor,z_coor,markersize=20,c=:red)
+scatter(x',y',z',markersize=20,c=:blue) 
+scatter!(size=(800,800))
+scatter!(camera=(40,40))

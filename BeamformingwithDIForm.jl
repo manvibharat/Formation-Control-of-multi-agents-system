@@ -1,7 +1,11 @@
+## Intialize
+
 using DifferentialEquations, Plots; pyplot();
 using LinearAlgebra 
 theme(:ggplot2)
 
+
+## ----
 n = 6;
 kv = 3;
 ka = 3;
@@ -13,14 +17,30 @@ Adj = [0 1 0 0 0 1;
        1 1 1 1 1 0];
 
 d = zeros(n,n); 
-c1 = cos(2*pi/5);
-c2 = cos(pi/5);
-s1 = sin(2*pi/5);
-s2 = sin(4*pi/5);
-x_coor = [0; -s1; -s2; s2; s1; 0];  
-y_coor = [1; c1; -c2; -c2; c1; 0];  
-z_coor = [0.0; 0.0; 0.0; 0.0; 0.0; 0.0];
+# c1 = cos(2*pi/5);
+# c2 = cos(pi/5);
+# s1 = sin(2*pi/5);
+# s2 = sin(4*pi/5);
+# x_coor = [0; -s1; -s2; s2; s1; 0];  
+# y_coor = [1; c1; -c2; -c2; c1; 0];  
+# z_coor = [0.0; 0.0; 0.0; 0.0; 0.0; 0.0];
 
+Recevier_Pos = [10,20,30];
+freq = 138*10^6;
+c = 3.8*10^8;
+lambda = c/freq;
+inter_agent_d = lambda / 2;
+k=collect(0:n-2);
+
+# R=4*lambda/10;
+# x=R*cos(2*k*pi/n);
+# y=R*sin(2*k*pi/n);
+# z=zeros(1,n+1);
+
+x_coor=[cos.(2*k*pi/(n-1));0];
+y_coor=[sin.(2*k*pi/(n-1));0];
+z_coor=zeros(n,1)
+## -----
 for ii = 1:n
     for jj = 1:n
         d[ii,jj] = sqrt((x_coor[ii]-x_coor[jj])^2+(y_coor[ii]-y_coor[jj])^2+(z_coor[ii]-z_coor[jj])^2)
@@ -30,7 +50,7 @@ end
 
 ub = 0.1;                           # Upper bound for random ini. condition
 lb = -0.1;                          # Lower bound for random ini. condition
-tfinal = 4;
+tfinal = 10;
 
 
 mutable struct para2
@@ -48,7 +68,7 @@ q_0 = [q_0 ;z_coor']
 v_0 = (lb*rand(3,n)+(ub-lb)*rand(3,n))*2
 qv_0 = [q_0 v_0];
 qv_0_vec = reshape(qv_0,(1,:));
-time_span = (0.0,10.0);
+time_span = (0.0,tfinal);
 
 function Desired_velocity(t,q)
     ω = [0.0,0.0,1.0];
@@ -143,4 +163,4 @@ anim3 = @animate for i in 1:length(pos3)
     scatter!(camera=(40,40))
 end
 
-gif(anim3,"anim_fps15.gif",fps=10)
+gif(anim3,"DI_dyn_fps10.gif",fps=10)
