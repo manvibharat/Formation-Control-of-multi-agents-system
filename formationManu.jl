@@ -5,7 +5,7 @@ theme(:ggplot2)
 
 
 n = 6;
-kv = 1;
+kv = 0.1
 
 Adj = [0 1 0 0 0 1;
        1 0 1 0 0 1;
@@ -64,9 +64,9 @@ function Desired_velocity(t,q)
     q = q';
 
     buff = reshape(q[n,:],(1,3))
-    print(size(buff))
+    # print(size(buff))
     zqwe = kron(ones(6,1),buff);
-    print(size(zqwe))
+    # print(size(zqwe))
     qr = q - zqwe;
     
     for i = 1:n
@@ -119,4 +119,4 @@ anim3 = @animate for i in 1:length(pos2)
     scatter!(size=(800,800))
 end
 
-gif(anim3,fps=10)
+gif(anim3,"SingleIntegratorManu.gif"fps=10)

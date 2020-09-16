@@ -143,4 +143,4 @@ anim3 = @animate for i in 1:length(pos3)
     scatter!(camera=(40,40))
 end
 
-gif(anim3,"anim_fps15.gif",fps=10)
+gif(anim3,"DoubleIntegratorManu.gif",fps=10)
