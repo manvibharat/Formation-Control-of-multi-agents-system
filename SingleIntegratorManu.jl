@@ -112,11 +112,11 @@ sol2 = solve(prob2,saveat=0.1)
 pos2 = sol2.u
 
 anim3 = @animate for i in 1:length(pos2)    
-    plt = scatter(5,xlim=(-2,12),ylim=(-2,3), zlim=(-1.5,1.5),c=:red,legend=false, framestyle=:origin)
-    pst = pst=reshape(pos2[i],(3,6))
+    plt = scatter(5,xlim=(-2,12),ylim=(-2,3), zlim=(-1,1.5),c=:red,legend=false, framestyle=:origin)
+    pst = reshape(pos2[i],(3,6))
     scatter!(x_coor',y_coor', z_coor', markersize=20 )
     scatter!(plt,pst[1,:],pst[2,:] , pst[3,:],markersize=20,c=:blue, legend=false)
     scatter!(size=(800,800))
 end
 
-gif(anim3,"SingleIntegratorManu.gif"fps=10)
+gif(anim3,"SingleIntegratorManu.gif",fps=10)

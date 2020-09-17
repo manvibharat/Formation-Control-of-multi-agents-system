@@ -3,8 +3,8 @@ using LinearAlgebra
 theme(:ggplot2)
 
 n = 6;
-kv = 3;
-ka = 3;
+kv = 1;
+ka = 1;
 Adj = [0 1 0 0 0 1;
        1 0 1 0 0 1;
        0 1 0 1 0 1;
@@ -113,4 +113,4 @@ anim3 = @animate for i in 1:length(pos3)
     scatter!(camera=(40,40))
 end
 
-gif(anim3,"doubleIntegrator.gif",fps=10)
+gif(anim3,"doubleIntegratorForm.gif",fps=10)

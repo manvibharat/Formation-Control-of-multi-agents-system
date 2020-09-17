@@ -90,26 +90,25 @@ prob = ODEProblem(f,q_0_vec,time_span,p)
 sol = solve(prob,saveat=0.1)
 
 pos = sol.u
-size(pos)
+# size(pos)
 pos = reshape(pos,(101,:))
-print(pos[1])
-# reshape(pos,(1:8))
-size(pos[1])
-pst=reshape(pos[101],(3,6))
+# print(pos[1])
+# # reshape(pos,(1:8))
+# size(pos[1])
+# pst=reshape(pos[101],(3,6))
 
 
 anim = @animate for i in 1:length(pos)
     
-    plt = scatter(1,xlim=(-1,1),ylim=(-1,1), zlim = (-1,1), c=:red,legend=false, framestyle=:origin)
+    plt = scatter(5,xlim=(-1,1),ylim=(-1,1), zlim = (-1,1), c=:red,legend=false, framestyle=:origin)
     
-    pst = pst=reshape(pos[i],(3,6))
-
-    scatter!(x_coor',y_coor',z_coor', size=[600,240] )
-    scatter!(plt,pst[1,:],pst[2,:],pst[3,:], size=[600,240] ,c=:blue, legend=false)
-    
+    pst = reshape(pos[i],(3,6))
+    scatter!(x_coor',y_coor',z_coor', markersize=20 )
+    scatter!(plt,pst[1,:],pst[2,:] , pst[3,:],markersize=20,c=:blue, legend=false)
+    scatter!(size=(800,800))
 end
 
 
-gif(anim,fps=1)
+gif(anim,"SingleIntegratorForm.gif",fps=1)
 
 
