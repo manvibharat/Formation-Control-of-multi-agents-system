@@ -1,16 +1,16 @@
 ## Formation-Control-of-multi-agents-system-using-Graph-rigidity
 
 Formation control of the agents having single integrator dynamics
-![screenshot](SingleIntegratorForm.gif)
+![screenshot](gifs/SingleIntegratorForm.gif)
 
 Formation tracking a given trajectory (Single integrator model)
-![screenshot](SingleIntegratorManu.gif)
+![screenshot](gifs/SingleIntegratorManu.gif)
 
 Formation control of the agents having Double integrator dynamics
-![screenshot](doubleIntegratorForm.gif)
+![screenshot](gifs/doubleIntegratorForm.gif)
 
 Formation tracking a given trajectory (Double integrator model)
-![screenshot](DoubleIntegratorManu.gif)
+![screenshot](gifs/DoubleIntegratorManu.gif)
 
 
 The simulations are from the following resource,
