@@ -59,7 +59,7 @@ ipython_config.py
 .nfs*
 
 ### VisualStudioCode ###
-.vscode/*
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
