@@ -7,7 +7,7 @@ Formation tracking a given trajectory (Single integrator model)
 ![screenshot](SingleIntegratorManu.gif)
 
 Formation control of the agents having single integrator dynamics
-![screenshot](DoubleIntegrator_form.gif)
+![screenshot](doubleIntegratorForm.gif)
 
 Formation tracking a given trajectory (Single integrator model)
-![screenshot](DoubleIntegrator_formManu.gif)
+![screenshot](DoubleIntegratorManu.gif)
